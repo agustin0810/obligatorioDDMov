@@ -2,8 +2,11 @@ Done:
 · Diseño de cada pantalla
 · Estructura de cada componente
 · Rutas para cada componente
+· Diseñar componentes en components
+· Comenzar con cada una de las pantallas
 
 ToDo:
 
-· Diseñar componentes en components (por ejemplo: MyItem.js)
-· Comenzar con cada una de las pantallas
+· Desarrollar las pantallas Supply y Replacement
+· Agregar los repuestos e insumos a las reparaciones (agregar idTreatment a insumos y reparaciones)
+**Pendiente a consultar sobre Na1 en la letra (¿o sería NaN?)**

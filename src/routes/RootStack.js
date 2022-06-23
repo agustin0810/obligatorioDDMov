@@ -12,7 +12,7 @@ import HomeCar from "../screens/Car/HomeCar";
 import AddCar from "../screens/Car/AddCar";
 import UpdateCar from "../screens/Car/UpdateCar";
 import HomeTreatment from "../screens/Treatment/HomeTreatment";
-import AddTreatment from "../screens/Treatment/HomeTreatment";
+import AddTreatment from "../screens/Treatment/AddTreatment";
 import UpdateTreatment from "../screens/Treatment/UpdateTreatment";
 import HomeSupply from "../screens/Supply/HomeSupply";
 import AddSupply from "../screens/Supply/AddSupply";
