@@ -5,7 +5,7 @@ Repositorio para desarrollo del obligatorio de DDMoviles - Leandro Miranda y Agu
 ### ÍNDICE.
 <b>1. [Lectura del problema](#lectura-del-problema)</b>
 <br><b> 2. [Casos de uso](#casos-de-uso)</b>
-<br><b> 3. [Próximos avances](#proximos-avances)</b>
+<br><b> 3. [Próximos avances](#pr%C3%B3ximos-avances)</b>
 <br><b> 4. [Problemas surgidos](#problemas-surgidos)</b>
 
 
