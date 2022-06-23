@@ -3,10 +3,10 @@
 Repositorio para desarrollo del obligatorio de DDMoviles - Leandro Miranda y Agustin Maciel.
 
 ### ÍNDICE.
-<b>1. [Lectura del problema](https://github.com/agustin0810/obligatorioDDMov/edit/main/README.md#lectura-del-problema)</b>
-<br><b> 2. [Casos de uso](https://github.com/agustin0810/obligatorioDDMov/edit/main/README.md#casos-de-uso)</b>
-<br><b> 3. [Próximos avances](https://github.com/agustin0810/obligatorioDDMov/edit/main/README.md#proximos-avances)</b>
-<br><b> 4. [Problemas surgidos](https://github.com/agustin0810/obligatorioDDMov/edit/main/README.md#problemas-surgidos)</b>
+<b>1. [Lectura del problema](#lectura-del-problema)</b>
+<br><b> 2. [Casos de uso](#casos-de-uso)</b>
+<br><b> 3. [Próximos avances](#proximos-avances)</b>
+<br><b> 4. [Problemas surgidos](#problemas-surgidos)</b>
 
 
 
