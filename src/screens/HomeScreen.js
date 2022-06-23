@@ -2,8 +2,6 @@ import React, {useEffect} from "react";
 import { StyleSheet, View, SafeAreaView, ScrollView, Alert } from "react-native";
 import MyButton from "../components/MyButton";
 
-import DatabaseConnection from "../database/database-connection";
-const db = DatabaseConnection.getConnection();
 
 const HomeScreen = ({ navigation }) => {
 
@@ -17,11 +15,13 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.generalView}>
           <View style={styles.generalView}>
             <ScrollView>
-              <MyButton
-                title="Usuarios"
-                btnColor="green"
-                customPress={() => navigation.navigate("RegisterUser")}
-              />
+              <MyButton title="Usuarios" margin={20} btnColor="#142492" customPress={() => navigation.navigate("HomeUser") }/>
+              <MyButton title="Autos" margin={20} btnColor="#142492" customPress={() => navigation.navigate("HomeCar") }/>
+              <MyButton title="Tratamientos" margin={20} btnColor="#142492" customPress={() => navigation.navigate("HomeTreatment") }/>
+              <MyButton title="Insumos" margin={20} btnColor="#142492" customPress={() => navigation.navigate("HomeSupply") }/>
+              <MyButton title="Repuestos" margin={20} btnColor="#142492" customPress={() => navigation.navigate("HomeReplacement") }/>
+              <MyButton style={styles.btnListados} margin={60} title="Listados" btnColor="#142492" customPress={() => navigation.navigate("DetailedList") }/>
+
             </ScrollView>
           </View>
         </View>
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   },
   viewContainer: {
     flex: 1,
-    backgroundColor: "black",
+    backgroundColor: "white",
   },
   generalView: {
     flex: 1,

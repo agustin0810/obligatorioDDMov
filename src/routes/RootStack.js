@@ -13,7 +13,7 @@ import AddCar from "../screens/Car/AddCar";
 import UpdateCar from "../screens/Car/UpdateCar";
 import HomeTreatment from "../screens/Treatment/HomeTreatment";
 import AddTreatment from "../screens/Treatment/HomeTreatment";
-import UpdateTreatment from "../screens/Treatment/Treatment";
+import UpdateTreatment from "../screens/Treatment/UpdateTreatment";
 import HomeSupply from "../screens/Supply/HomeSupply";
 import AddSupply from "../screens/Supply/AddSupply";
 import UpdateSupply from "../screens/Supply/UpdateSupply";
@@ -33,7 +33,7 @@ const RootStack = () => {
           options={{
             title: "Home",
             headerStyle: {
-              backgroundColor: "#f4511e",
+              backgroundColor: "#142492",
             },
             headerTintColor: "#fff",
             headerTitleStyle: {
@@ -47,7 +47,7 @@ const RootStack = () => {
           options={{
             title: "HomeUser",
             headerStyle: {
-              backgroundColor: "#f4511e",
+              backgroundColor: "#142492",
             },
             headerTintColor: "#fff",
             headerTitleStyle: {
@@ -61,7 +61,7 @@ const RootStack = () => {
           options={{
             title: "AddUser",
             headerStyle: {
-              backgroundColor: "#f4511e",
+              backgroundColor: "#142492",
             },
             headerTintColor: "#fff",
             headerTitleStyle: {
@@ -75,7 +75,7 @@ const RootStack = () => {
           options={{
             title: "UpdateUser",
             headerStyle: {
-              backgroundColor: "#f4511e",
+              backgroundColor: "#142492",
             },
             headerTintColor: "#fff",
             headerTitleStyle: {
@@ -89,7 +89,7 @@ const RootStack = () => {
           options={{
             title: "HomeCar",
             headerStyle: {
-              backgroundColor: "#f4511e",
+              backgroundColor: "#142492",
             },
             headerTintColor: "#fff",
             headerTitleStyle: {
@@ -103,7 +103,7 @@ const RootStack = () => {
           options={{
             title: "AddCar",
             headerStyle: {
-              backgroundColor: "#f4511e",
+              backgroundColor: "#142492",
             },
             headerTintColor: "#fff",
             headerTitleStyle: {
@@ -117,7 +117,7 @@ const RootStack = () => {
           options={{
             title: "UpdateCar",
             headerStyle: {
-              backgroundColor: "#f4511e",
+              backgroundColor: "#142492",
             },
             headerTintColor: "#fff",
             headerTitleStyle: {
@@ -131,7 +131,7 @@ const RootStack = () => {
           options={{
             title: "HomeTreatment",
             headerStyle: {
-              backgroundColor: "#f4511e",
+              backgroundColor: "#142492",
             },
             headerTintColor: "#fff",
             headerTitleStyle: {
@@ -145,7 +145,7 @@ const RootStack = () => {
           options={{
             title: "AddTreatment",
             headerStyle: {
-              backgroundColor: "#f4511e",
+              backgroundColor: "#142492",
             },
             headerTintColor: "#fff",
             headerTitleStyle: {
@@ -159,7 +159,7 @@ const RootStack = () => {
           options={{
             title: "UpdateTreatment",
             headerStyle: {
-              backgroundColor: "#f4511e",
+              backgroundColor: "#142492",
             },
             headerTintColor: "#fff",
             headerTitleStyle: {
@@ -173,7 +173,7 @@ const RootStack = () => {
           options={{
             title: "HomeReplacement",
             headerStyle: {
-              backgroundColor: "#f4511e",
+              backgroundColor: "#142492",
             },
             headerTintColor: "#fff",
             headerTitleStyle: {
@@ -187,7 +187,7 @@ const RootStack = () => {
           options={{
             title: "AddReplacement",
             headerStyle: {
-              backgroundColor: "#f4511e",
+              backgroundColor: "#142492",
             },
             headerTintColor: "#fff",
             headerTitleStyle: {
@@ -201,7 +201,7 @@ const RootStack = () => {
           options={{
             title: "UpdateReplacement",
             headerStyle: {
-              backgroundColor: "#f4511e",
+              backgroundColor: "#142492",
             },
             headerTintColor: "#fff",
             headerTitleStyle: {
@@ -215,7 +215,7 @@ const RootStack = () => {
           options={{
             title: "HomeSupply",
             headerStyle: {
-              backgroundColor: "#f4511e",
+              backgroundColor: "#142492",
             },
             headerTintColor: "#fff",
             headerTitleStyle: {
@@ -229,7 +229,7 @@ const RootStack = () => {
           options={{
             title: "AddSupply",
             headerStyle: {
-              backgroundColor: "#f4511e",
+              backgroundColor: "#142492",
             },
             headerTintColor: "#fff",
             headerTitleStyle: {
@@ -243,7 +243,7 @@ const RootStack = () => {
           options={{
             title: "UpdateSupply",
             headerStyle: {
-              backgroundColor: "#f4511e",
+              backgroundColor: "#142492",
             },
             headerTintColor: "#fff",
             headerTitleStyle: {
@@ -257,7 +257,7 @@ const RootStack = () => {
           options={{
             title: "DetailedList",
             headerStyle: {
-              backgroundColor: "#f4511e",
+              backgroundColor: "#142492",
             },
             headerTintColor: "#fff",
             headerTitleStyle: {

@@ -3,7 +3,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 const MyButton = (props) => {
   return (
-      <TouchableOpacity style={[styles.button, {backgroundColor: props.btnColor}]} onPress={props.customPress}>
+      <TouchableOpacity style={[styles.button, {backgroundColor: props.btnColor}, {marginTop: props.margin}]} onPress={props.customPress}>
         <View style={styles.view}>
             <Text style={styles.text}>{props.title}</Text>
         </View>
@@ -31,9 +31,4 @@ const styles = StyleSheet.create({
     text: {
         color: 'white',
     },
-    icon: {
-        paddingBottom: 5,
-        flexDirection: 'column',
-        alignItems: 'center',
-    }
 });
