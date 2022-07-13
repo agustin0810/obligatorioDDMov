@@ -13,7 +13,7 @@ const DetailedList = () => {
 
     db.transaction( (txn) => {
 
-      txn.executeSql(`SELECT DISTINCT treatments.id, treatments.name, treatments.fInicio, treatments.fFin, treatments.carCode, treatments.costoTratamiento, users.name as uName, users.lastname as uLastname, replacements.treatmentId as replacements FROM treatments inner join users on treatments.carCode = users.carCode inner join replacements on treatments.id=replacements.treatmentId`, [], (tx, results) => {
+      txn.executeSql(`SELECT DISTINCT treatments.id, treatments.name, treatments.fInicio, treatments.fFin, treatments.carCode, treatments.costoTratamiento, users.name as uName, users.lastname as uLastname, replacements.treatmentId as replacements FROM treatments inner join users on treatments.carCode = users.carCode left join replacements on treatments.id=replacements.treatmentId`, [], (tx, results) => {
         // validar resultado
         if (results.rows.length > 0) {
           var temp = [];
