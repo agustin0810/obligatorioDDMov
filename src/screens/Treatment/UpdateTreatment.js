@@ -9,7 +9,9 @@ const UpdateTreatment = ({ route, navigation }) => {
   const [carCode, setCarCode] = useState('');
   const [fInicio, setFInicio] = useState('');
   const [fFin, setFFin] = useState('');
-  const [costoTratamiento, setCostoTratamiento] = useState(null);
+  const [costoTratamiento, setCostoTratamiento] = useState(0);
+  const [carsCodes, setCarsCodes] = useState([]);
+
   //Recibimos el parámetro de la anterior ventana:
   const {treatmentId} = route.params;
 
@@ -41,24 +43,72 @@ const UpdateTreatment = ({ route, navigation }) => {
           );
         }
       });
+      txn.executeSql(`SELECT carCode FROM cars`, [], (tx, results) => {
+        // validar resultado
+  
+        if (results.rows.length > 0) {
+          var temp = [];
+          for (let i = 0; i < results.rows.length; ++i){
+  
+            //Alert.alert("paso " +results.rows.item(i).name)
+            temp.push(results.rows.item(i).carCode);
+          }
+          setCarsCodes(temp);
+          
+        } else {
+          Alert.alert(
+            "Mensaje",
+            "No hay ningún auto registrado",
+            [
+              {
+                text: "Ok",
+              },
+            ],
+            { cancelable: false }
+          );
+        }
+      });
     })
   }, []);
   
+  const checkFields = () =>{
+    if(name!='' && carCode!='' && fInicio!='' && fFin!='' && costoTratamiento!=0){
+      console.log(carsCodes)
+      if(carsCodes.includes(carCode)){
+        if(!isNaN(costoTratamiento)){
+          console.log(fInicio.substring(5, 7))
+
+              return true;
+
+        }
+        Alert.alert("Debe ingresar un costo en números")
+        return false;
+      }
+      Alert.alert("Su matrícula debe corresponder a un vehículo")
+      return false;
+    }
+    Alert.alert("Debe ingresar todos los campos")
+    return false;
+  }
 
   const updateT = () =>{
-    db.transaction((tx) => {
-      tx.executeSql(
-        "UPDATE treatments SET name = ?, carCode = ?, fInicio= ?, fFin= ?, costoTratamiento = ? WHERE id = ?",
-        [name, carCode, fInicio, fFin, costoTratamiento, treatmentId],
-        (tx, results) => {
-          if (results.rowsAffected > 0) {
-            Alert.alert("Tratamiento actualizado");
-          } else {
-            Alert.alert("No se pudo actualizar el tratamiento");
+    if(checkFields()==true){
+
+
+      db.transaction((tx) => {
+        tx.executeSql(
+          "UPDATE treatments SET name = ?, carCode = ?, fInicio= ?, fFin= ?, costoTratamiento = ? WHERE id = ?",
+          [name, carCode, fInicio, fFin, costoTratamiento, treatmentId],
+          (tx, results) => {
+            if (results.rowsAffected > 0) {
+              Alert.alert("Tratamiento actualizado");
+            } else {
+              Alert.alert("No se pudo actualizar el tratamiento");
+            }
           }
-        }
-      );
-    });
+        );
+      });
+    }
   }
   return (
   <SafeAreaView style={styles.container}>
@@ -73,7 +123,7 @@ const UpdateTreatment = ({ route, navigation }) => {
                 <TextInput style={styles.textInput} value={carCode} onChangeText={setCarCode} id="inputLastName" editable maxLength={7} placeholder="Mat. auto" />
                 <TextInput style={styles.textInput} value={fInicio} onChangeText={setFInicio} id="inputCI" editable maxLength={19} placeholder="Fecha inicio (YYYY-MM-DD HH:MM:SS)" /> 
                 <TextInput style={styles.textInput} value={fFin} onChangeText={setFFin} id="inputMatAuto" editable maxLength={19} placeholder="Fecha fin (YYYY-MM-DD HH:MM:SS)" />
-                <TextInput style={styles.textInput} value={costoTratamiento.toString()} onChangeText={setCostoTratamiento} id="inputMatAuto" editable maxLength={10} placeholder="Costo tratamiento" />
+                <TextInput style={styles.textInput} value={costoTratamiento.toString() } onChangeText={setCostoTratamiento} id="inputMatAuto" editable maxLength={10} placeholder="Costo tratamiento" />
 
                 <TouchableOpacity style={[styles.submitButton]} onPress={updateT}>
                   <Text style={styles.text}>Modificar</Text>

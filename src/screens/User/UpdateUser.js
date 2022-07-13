@@ -11,6 +11,8 @@ const UpdateUser = ({ route, navigation }) => {
   const [matAuto, setMatAuto] = useState('');
   //Recibimos el parámetro de la anterior ventana:
   const {userId} = route.params;
+  const [carsCodes, setCarsCodes] = useState([]);
+  const [documents, setDocuments] = useState([]);
 
   //Rellenamos los campos con los valores del usuario actual
   useEffect(() => {
@@ -38,11 +40,92 @@ const UpdateUser = ({ route, navigation }) => {
           );
         }
       });
+      txn.executeSql(`SELECT carCode FROM cars`, [], (tx, results) => {
+        // validar resultado
+    
+        if (results.rows.length > 0) {
+          var temp = [];
+          for (let i = 0; i < results.rows.length; ++i){
+    
+            //Alert.alert("paso " +results.rows.item(i).name)
+            temp.push(results.rows.item(i).carCode);
+          }
+          setCarsCodes(temp);
+          
+        } else {
+          Alert.alert(
+            "Mensaje",
+            "No hay ningún auto registrado",
+            [
+              {
+                text: "Ok",
+              },
+            ],
+            { cancelable: false }
+          );
+        }
+      });
+      txn.executeSql(`SELECT document FROM users`, [], (tx, results) => {
+        // validar resultado
+    
+        if (results.rows.length > 0) {
+          var temp = [];
+          for (let i = 0; i < results.rows.length; ++i){
+    
+            //Alert.alert("paso " +results.rows.item(i).name)
+            temp.push(results.rows.item(i).document.toString());
+          }
+          setDocuments(temp);
+          
+        } else {
+          Alert.alert(
+            "Mensaje",
+            "No hay ningún usuario registrado",
+            [
+              {
+                text: "Ok",
+              },
+            ],
+            { cancelable: false }
+          );
+        }
+      });
     })
   }, []);
-  
+  const checkFields = () =>{
+    if(name!='' && lastname!='' && ci!=null && matAuto!=''){
+      
+      if(!isNaN(ci) && ci.length==8){
+        if(carsCodes.includes(matAuto)){
+              
+          if(!documents.includes(ci.toString())){
+            return true;
+          }
+          else{
+            Alert.alert("Documento duplicado.")
+            return false;
+          }
+        }
+        else{
+          Alert.alert("La matricula que ingresó no corresponde a ningún vehículo.")
+          return false;
+        }
+      }
+      else{
+        Alert.alert("El formato de la CI es incorrecto.")
+        return false;
+      }
+      
+    }
+    else{
+      Alert.alert("Debe ingresar todos los campos.")
+      return false;
+    }
+  }
 
   const updateU = () =>{
+    if(checkFields()==true){
+
     db.transaction((tx) => {
       tx.executeSql(
         "UPDATE users SET name = ?, lastname = ?, document= ?, carCode= ? WHERE id = ?",
@@ -56,6 +139,7 @@ const UpdateUser = ({ route, navigation }) => {
         }
       );
     });
+  }
   }
   return (
   <SafeAreaView style={styles.container}>

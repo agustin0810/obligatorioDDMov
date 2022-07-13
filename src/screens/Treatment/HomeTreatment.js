@@ -137,6 +137,7 @@ const HomeTreatment = ({ navigation }) => {
             renderItem={({ item }) => listItemView(item)}
 
             />
+            {console.log(treatments)}
           </View>
       </View>
     </View>

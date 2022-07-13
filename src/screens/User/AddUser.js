@@ -3,7 +3,6 @@ import React, {useState, useEffect} from 'react'
 import DatabaseConnection from "../../database/database-connection";
 
 const db = DatabaseConnection.getConnection();
-
 const AddUser = ({ navigation }) => {
   const [name, setName] = useState('');
   const [lastname, setLastName] = useState('');
@@ -11,7 +10,94 @@ const AddUser = ({ navigation }) => {
   const [matAuto, setMatAuto] = useState('');
   const [maxId, setMaxId] = useState(null);
   const [paso, setpaso] = useState(6);
+  const [carsCodes, setCarsCodes] = useState([]);
+  const [documents, setDocuments] = useState([]);
 
+  useEffect(() => {
+
+    db.transaction((tx) => {
+      tx.executeSql(`SELECT carCode FROM cars`, [], (tx, results) => {
+        // validar resultado
+    
+        if (results.rows.length > 0) {
+          var temp = [];
+          for (let i = 0; i < results.rows.length; ++i){
+    
+            //Alert.alert("paso " +results.rows.item(i).name)
+            temp.push(results.rows.item(i).carCode);
+          }
+          setCarsCodes(temp);
+          
+        } else {
+          Alert.alert(
+            "Mensaje",
+            "No hay ningún auto registrado",
+            [
+              {
+                text: "Ok",
+              },
+            ],
+            { cancelable: false }
+          );
+        }
+      });
+      tx.executeSql(`SELECT document FROM users`, [], (tx, results) => {
+        // validar resultado
+    
+        if (results.rows.length > 0) {
+          var temp = [];
+          for (let i = 0; i < results.rows.length; ++i){
+    
+            //Alert.alert("paso " +results.rows.item(i).name)
+            temp.push(results.rows.item(i).document.toString());
+          }
+          setDocuments(temp);
+          
+        } else {
+          Alert.alert(
+            "Mensaje",
+            "No hay ningún usuario registrado",
+            [
+              {
+                text: "Ok",
+              },
+            ],
+            { cancelable: false }
+          );
+        }
+      });
+    }
+  
+  )}, [])
+  const checkFields = () =>{
+    if(name!='' && lastname!='' && ci!=null && matAuto!=''){
+      
+      if(!isNaN(ci) && ci.length==8){
+        if(carsCodes.includes(matAuto)){
+          if(!documents.includes(ci.toString())){
+            return true;
+          }
+          else{
+            Alert.alert("Documento duplicado.")
+            return false;
+          }
+        }
+        else{
+          Alert.alert("La matricula que ingresó no corresponde a ningún vehículo.")
+          return false;
+        }
+      }
+      else{
+        Alert.alert("El formato de la CI es incorrecto.")
+        return false;
+      }
+      
+    }
+    else{
+      Alert.alert("Debe ingresar todos los campos.")
+      return false;
+    }
+  }
   //función para hacer el submit desde el botón
   const submitUser = () =>{
     // Pendiente validar la matricula
@@ -20,6 +106,8 @@ const AddUser = ({ navigation }) => {
       //validamos la ci como número
   //    if(Number(ci)){
    //     if(maxId){
+      if(checkFields()==true){
+
 
           // guardar los datos
           db.transaction((tx) => {
@@ -71,6 +159,7 @@ const AddUser = ({ navigation }) => {
     //    '¡Faltan datos por ingresar!'
     //);  
    // }
+    }
   }
 
   return (

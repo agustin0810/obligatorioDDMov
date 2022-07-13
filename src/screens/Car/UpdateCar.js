@@ -14,48 +14,60 @@ const UpdateCar = ({ route, navigation }) => {
   //Rellenamos los campos con los valores del usuario actual
   useEffect(() => {
     db.transaction((txn) => {
-      
-      txn.executeSql(`SELECT * FROM cars WHERE carCode=?`, [carCode], (tx, results) => {
-        // validar resultado
-        if (results.rows.length > 0) {
-          setBrand(results.rows.item(0).brand)
-          setColor(results.rows.item(0).color)
-          setEngineSerial(results.rows.item(0).engineSerial)
-        } else {
-          Alert.alert(
-            "Mensaje",
-            "No se encontró el auto con matrícula: "+carCode,
-            [
-              {
-                text: "Ok",
-                onPress: () => navigation.navigate("HomeCar"),
 
-              },
-            ],
-            { cancelable: false }
-          );
-        }
-      });
+        txn.executeSql(`SELECT * FROM cars WHERE carCode=?`, [carCode], (tx, results) => {
+          // validar resultado
+          if (results.rows.length > 0) {
+            setBrand(results.rows.item(0).brand)
+            setColor(results.rows.item(0).color)
+            setEngineSerial(results.rows.item(0).engineSerial)
+          } else {
+            Alert.alert(
+              "Mensaje",
+              "No se encontró el auto con matrícula: "+carCode,
+              [
+                {
+                  text: "Ok",
+                  onPress: () => navigation.navigate("HomeCar"),
+
+                },
+              ],
+              { cancelable: false }
+            );
+          }
+        });
+
     })
   }, []);
   
+  const validarDatos = () =>{
+    if(brand!='' && color!='' && engineSerial!=null){
+     
 
+        return true;
+    }
+    Alert.alert('Debe ingresar todos los campos')
+    return false
+  }
   const updateC = () =>{
-    db.transaction((tx) => {
+    if(validarDatos()==true){
 
-      tx.executeSql(
-        "UPDATE cars SET brand = ?, color = ?, engineSerial= ? WHERE carCode = ?",
-        [brand, color, engineSerial, carCode],
-        (tx, results) => {
+      db.transaction((tx) => {
 
-          if (results.rowsAffected > 0) {
-            Alert.alert("Auto actualizado");
-          } else {
-            Alert.alert("No se pudo actualizar el auto");
+        tx.executeSql(
+          "UPDATE cars SET brand = ?, color = ?, engineSerial= ? WHERE carCode = ?",
+          [brand, color, engineSerial, carCode],
+          (tx, results) => {
+
+            if (results.rowsAffected > 0) {
+              Alert.alert("Auto actualizado");
+            } else {
+              Alert.alert("No se pudo actualizar el auto");
+            }
           }
-        }
-      );
-    });
+        );
+      });
+    }
   }
   return (
   <SafeAreaView style={styles.container}>
